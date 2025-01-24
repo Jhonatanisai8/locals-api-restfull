@@ -3,6 +3,7 @@ package com.isai.localsapirestfull.controller;
 import com.isai.localsapirestfull.entity.Local;
 import com.isai.localsapirestfull.error.LocalNotFoundException;
 import com.isai.localsapirestfull.service.LocalServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,7 +41,7 @@ public class LocalController {
     }
 
     @PostMapping("/saveLocal")
-    public Local saveLocal(@RequestBody Local local) {
+    public Local saveLocal(@Valid @RequestBody Local local) {
         return localServiceImpl.saveLocal(local);
     }
 
