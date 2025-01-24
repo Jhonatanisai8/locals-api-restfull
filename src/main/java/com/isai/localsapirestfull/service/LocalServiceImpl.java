@@ -57,8 +57,12 @@ public class LocalServiceImpl
         return localRepository.findLocalByNameJPQL(name);
     }
 
-    public Optional<Local> findLocalByName(String name) {
-        return localRepository.findLocalByName(name);
+    public Optional<Local> findByName(String name) {
+        return localRepository.findByName(name);
     }
 
+    @Override
+    public Optional<Local> findByNameIgnoreCase(String name) {
+        return localRepository.findByNameIgnoreCase(name);
+    }
 }

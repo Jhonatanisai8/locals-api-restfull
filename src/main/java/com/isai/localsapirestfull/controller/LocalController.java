@@ -24,10 +24,16 @@ public class LocalController {
         return localServiceImpl.findLocalByNameJPQL(name);
     }
 
-    @GetMapping("/findLocalByName/{name}")
-    public Optional<Local> findLocalByName(@PathVariable String name) {
-        return localServiceImpl.findLocalByName(name);
+    @GetMapping("/findByName/{name}")
+    public Optional<Local> findByName(@PathVariable String name) {
+        return localServiceImpl.findByName(name);
     }
+
+    @GetMapping("/findByNameIgnoreCase/{name}")
+    public Optional<Local> findByNameIgnoreCase(@PathVariable String name) {
+        return localServiceImpl.findByNameIgnoreCase(name);
+    }
+
 
     @PostMapping("/saveLocal")
     public Local saveLocal(@RequestBody Local local) {
@@ -45,5 +51,6 @@ public class LocalController {
         localServiceImpl.deleteLocal(localID);
         return "Deleted Local with ID: " + localID;
     }
+
 
 }

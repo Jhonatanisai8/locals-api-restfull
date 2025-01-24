@@ -13,5 +13,7 @@ public interface LocalRepository
     @Query("SELECT l FROM Local l WHERE l.name = :name")
     Optional<Local> findLocalByNameJPQL(String name);
 
-    Optional<Local> findLocalByName(String name);
+    Optional<Local> findByName(String name);
+
+    Optional<Local> findByNameIgnoreCase(String name);
 }
