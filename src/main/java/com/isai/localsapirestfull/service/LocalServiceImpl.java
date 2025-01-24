@@ -56,4 +56,9 @@ public class LocalServiceImpl
     public Optional<Local> findLocalByNameJPQL(String name) {
         return localRepository.findLocalByNameJPQL(name);
     }
+
+    public Optional<Local> findLocalByName(String name) {
+        return localRepository.findLocalByName(name);
+    }
+
 }

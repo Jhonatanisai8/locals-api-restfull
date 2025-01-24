@@ -16,4 +16,6 @@ public interface LocalService {
     void deleteLocal(Long localID);
 
     Optional<Local> findLocalByNameJPQL(String name);
+
+    Optional<Local> findLocalByName(String name);
 }

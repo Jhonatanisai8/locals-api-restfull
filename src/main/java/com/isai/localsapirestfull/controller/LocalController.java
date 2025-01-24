@@ -2,6 +2,7 @@ package com.isai.localsapirestfull.controller;
 
 import com.isai.localsapirestfull.entity.Local;
 import com.isai.localsapirestfull.service.LocalServiceImpl;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,11 @@ public class LocalController {
     @GetMapping("/findLocalByNameJPQL/{name}")
     Optional<Local> findLocalByNameJPQL(@PathVariable String name) {
         return localServiceImpl.findLocalByNameJPQL(name);
+    }
+
+    @GetMapping("/findLocalByName/{name}")
+    public Optional<Local> findLocalByName(@PathVariable String name) {
+        return localServiceImpl.findLocalByName(name);
     }
 
     @PostMapping("/saveLocal")

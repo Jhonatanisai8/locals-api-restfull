@@ -12,4 +12,6 @@ public interface LocalRepository
         extends JpaRepository<Local, Long> {
     @Query("SELECT l FROM Local l WHERE l.name = :name")
     Optional<Local> findLocalByNameJPQL(String name);
+
+    Optional<Local> findLocalByName(String name);
 }
