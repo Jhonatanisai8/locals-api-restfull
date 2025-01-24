@@ -69,6 +69,8 @@ public class LocalServiceImpl
 
     @Override
     public Local findLocalById(Long localID) throws LocalNotFoundException {
+        String valueInput = String.valueOf(localID);
+
         Optional<Local> local = localRepository.findById(localID);
         //si no esta presente este lanza la exception
         if (local.isEmpty()) {
@@ -76,4 +78,6 @@ public class LocalServiceImpl
         }
         return local.get();
     }
+
+
 }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice //va a manejar las exceptiones
 public class RestResponseEntityExceptionHandler
         extends ResponseEntityExceptionHandler {
+
     @ExceptionHandler(LocalNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ErrorMessage> localNotFoundException(LocalNotFoundException ex) {

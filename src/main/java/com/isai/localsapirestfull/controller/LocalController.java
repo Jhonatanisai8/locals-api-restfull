@@ -3,7 +3,6 @@ package com.isai.localsapirestfull.controller;
 import com.isai.localsapirestfull.entity.Local;
 import com.isai.localsapirestfull.error.LocalNotFoundException;
 import com.isai.localsapirestfull.service.LocalServiceImpl;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
