@@ -29,7 +29,8 @@ public class LocalController {
     }
 
     @DeleteMapping("/deleteLocal/{localID}")
-    public void deleteLocal(@PathVariable Long localID) {
+    public String deleteLocal(@PathVariable Long localID) {
         localServiceImpl.deleteLocal(localID);
+        return "Deleted Local with ID: " + localID;
     }
 }
