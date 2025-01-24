@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class LocalController {
@@ -15,6 +16,11 @@ public class LocalController {
     @GetMapping("/findAllLocals")
     public List<Local> findAllLocals() {
         return localServiceImpl.findAllLocals();
+    }
+
+    @GetMapping("/findLocalByNameJPQL/{name}")
+    Optional<Local> findLocalByNameJPQL(@PathVariable String name) {
+        return localServiceImpl.findLocalByNameJPQL(name);
     }
 
     @PostMapping("/saveLocal")
@@ -33,4 +39,5 @@ public class LocalController {
         localServiceImpl.deleteLocal(localID);
         return "Deleted Local with ID: " + localID;
     }
+
 }
