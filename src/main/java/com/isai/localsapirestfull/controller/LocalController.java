@@ -1,6 +1,7 @@
 package com.isai.localsapirestfull.controller;
 
 import com.isai.localsapirestfull.entity.Local;
+import com.isai.localsapirestfull.error.LocalNotFoundException;
 import com.isai.localsapirestfull.service.LocalServiceImpl;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,10 @@ public class LocalController {
         return localServiceImpl.findByNameIgnoreCase(name);
     }
 
+    @GetMapping("/findLocalById/{localID}")
+    public Local findLocalById(@PathVariable Long localID) throws LocalNotFoundException {
+        return localServiceImpl.findLocalById(localID);
+    }
 
     @PostMapping("/saveLocal")
     public Local saveLocal(@RequestBody Local local) {

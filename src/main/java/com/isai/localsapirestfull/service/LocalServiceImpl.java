@@ -1,6 +1,7 @@
 package com.isai.localsapirestfull.service;
 
 import com.isai.localsapirestfull.entity.Local;
+import com.isai.localsapirestfull.error.LocalNotFoundException;
 import com.isai.localsapirestfull.repository.LocalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,5 +65,15 @@ public class LocalServiceImpl
     @Override
     public Optional<Local> findByNameIgnoreCase(String name) {
         return localRepository.findByNameIgnoreCase(name);
+    }
+
+    @Override
+    public Local findLocalById(Long localID) throws LocalNotFoundException {
+        Optional<Local> local = localRepository.findById(localID);
+        //si no esta presente este lanza la exception
+        if (local.isEmpty()) {
+            throw new LocalNotFoundException("Local not found");
+        }
+        return local.get();
     }
 }
