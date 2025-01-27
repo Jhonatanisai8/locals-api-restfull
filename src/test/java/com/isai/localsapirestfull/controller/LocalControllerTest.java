@@ -1,7 +1,6 @@
 package com.isai.localsapirestfull.controller;
 
 import com.isai.localsapirestfull.entity.Local;
-import com.isai.localsapirestfull.service.LocalService;
 import com.isai.localsapirestfull.service.LocalServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(LocalController.class)
@@ -45,16 +46,28 @@ class LocalControllerTest {
                 .code("ST4-3SS")
                 .build();
 
-        Mockito.when(localService.saveLocal(Mockito.any(Local.class)))
+        Mockito.when(localService.saveLocal(postLocal))
                 .thenReturn(local);
 
         mockMvc.perform(post("/saveLocal")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\n" +
-                                "    \"name\": \"Sanchez Technology\",\n" +
-                                "    \"floor\": \"Floor 4\",\n" +
-                                "    \"code\": \"ST4-3SS\"\n" +
-                                "}"))
+                        .content("""
+                                {
+                                    "name": "Sanchez Technology",
+                                    "floor": "Floor 4",
+                                    "code": "ST4-3SS"
+                                }"""))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findLocalById() throws Exception {
+        Mockito.when(localService.findLocalById(1L))
+                .thenReturn(local);
+        mockMvc.perform(get("/findLocalById/1")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name")
+                        .value(local.getName()));
     }
 }
